@@ -1,0 +1,375 @@
+:root /*propiedad CSS para definir valores a utilizar más de una , donde pueden tener más que solo fuentes y colores, ya que como es un pequeño contenedor reutulizable, podemos poner muchas más propiedades para únicamente llamarlas con la propiedad var()*/{
+    --feunteheading: 'PT Sans', sans-serif;
+    --fuenteParrafo: 'Open Sans', sans-serif;
+    --primario: #784d3c;
+    --blanco: #ffffff;
+    --negro: #000000;
+    --gris: #e1e1e1;
+} 
+
+html {
+    box-sizing: border-box; /*variable global para el contenido no se salga del ancho, con el objetivo de tener medidas exactas*/
+    font-size: 62.5%; /*Esto para que 1rem = 10px como valor numerico global*/
+}
+
+/* Lo que hay arriba es que cuando le estás definiendo esa propiedad al html, le dices que para cada elemento, sin contar el margin, cuando tengas un tamaño definido, no varoará el tamaño cuando lo modifiques, de forma que se quedará con el mismo tamaño. Esto no le dimos ningún valor, puesto que tendrémos deiferentes valores para cada elemento, y abajo solo le decimos que aplique esto para todos los elementos del html, para no tener que repetirlos. Sabemos que lo va a hacer porque el elemento más cercano del box-sizing: inherit;, que le definimos la prppiedad de box-sizing: border-box;, será el que se aplicará, porque como sabemos, CSS es en cascada, valga la redundancia*/
+
+*, *::before, *::after {
+    box-sizing: inherit;
+} /*Esto hace que sew herede todos las propiedades del la etiqueta html*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fuenteParrafo);
+    font-size: 1.6rem;
+    line-height: 2;
+    min-height: 100vh;
+} /*Para que todo el contenido tenga una fuente global, un tamaño establecido y un interlineado. había un pequeño problema con el Footer, así que le puse un display flex para solucionarlo. No lo tomes en cuenta. También le he puesto un min-height para que el body ocupara todo el área de la página.*/
+
+
+
+
+
+/* VARIABLES GLOBALES */
+
+.contenedor {
+    width: min(90%, 100rem);
+    margin: 0 auto;
+} /*Propiedad global para definir el diseño general de la página, done se usa el tamaño máximo, el tamaño estandar y el posicionamiento del contenido, que en este caso será central, al tener los valores verticales en 0, y los valores horizontales en automático para que se dsitribuyan uniformemente de acurdo al espacio disponible en la pantalla*/
+
+a {
+    text-decoration: none;
+} /*Eliminar todo diseño que puedan tener los enlaces por defecto*/
+
+h1, h2, h3, h4 {
+    font-family: var(--feunteheading);
+    line-height: 1.2;
+} /*fuente global para esos tamaños, como dije, sacanddolo de nuestro contenedor root usando var()*/
+
+h1 {
+    font-size: 4.8rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 3.2rem;
+}
+
+h4 {
+    font-size: 2.8rem;
+} /*Aplicando tamaños de fuente a cada h*/
+
+img {
+    max-width: 100%;
+} /*Ancho máximo que abarque todo el espacio asignado al html*/
+
+/* UTILIDADES */
+
+.no-margin {
+    margin: 0;
+} /*Eliminamos los márgenes que el navegador pone a ciertos elementos por defecto*/
+
+.no-padding {
+padding: 0;
+} /*Eliminamos los paddings que los navegadores colocan por defecto a algunos elementos*/
+
+.centrar-texto {
+    text-align: center;
+} /*Ajustar el texto para que esté centrado*/
+
+
+
+/*  HEADER */
+
+.webp .header {
+    background-image: url(../img/banner.webp);
+}
+
+.no-webp .header {
+    background-image: url(../img/banner.jpg);
+}
+
+.header {
+    background-image: url(../img/banner.jpg);
+    height: 60rem;
+    background-size: cover; /*que el tamaño asignado cubra toda la imagen*/
+    background-repeat: no-repeat; /*repeticion de imagenes*/
+    background-position: center center; /*propeidad para centrar imágenes vertical y horizontalmente, aunque también puedes posicionar la imagen hacia arriba o hacia abajo.*/
+}
+
+.header__texto {
+    text-align: center;
+    color: var(--blanco);
+    margin-top: 5rem;
+} /*Colocamos un color, centrado al texto y una separación interna de altura*/
+
+.header__descripcion {
+    padding-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .header__texto {
+        margin-top: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .header__texto {
+        margin-top: 15rem;
+    }
+}
+
+.barra {
+    padding-top: 4rem;
+}
+
+@media (min-width: 768px) {
+    .barra {
+        display: flex; /*Definimos las propiedades de Flexbox*/
+        justify-content: space-between; /*propiedad para ordenar elementos horizontalmente*/
+        align-items: center; /*propiedad para ordear elementos verticalmente*/
+    }
+}
+
+.logo {
+    color: var(--blanco);
+}
+
+.logo__nombre {
+    font-weight: 400;
+}
+
+.logo__bold {
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .navegacion {
+        padding-top: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .navegacion {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+.navegacion__enlace {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--blanco);
+}
+
+
+@media (min-width: 768px) {
+    .contenido-principal {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 4rem;
+    }
+}
+
+.entrada {
+    border-bottom: 1px solid var(--gris);
+    margin-bottom: 2rem;
+}
+
+.entrada:last-of-type {
+    border: none;
+    margin-bottom: 0;
+} /*last-of-type se utiliza para seleccionar el último elemento de un tipo específico dentro de su contenedor, en este caso, de la clase entrada*/
+
+.boton {
+    display: block; /*tipo de display donde hay ancho y alto especificados, tiene una colocacion de elementos de forma vertical, tendrá un espaciado del 100% si no se especifíca.*/
+    font-family: var(--feunteheading);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border: none;
+}
+@media (min-width: 768px) {
+    .boton {
+        display: inline-block;
+    }
+}
+
+.boton:hover {
+    cursor: pointer;
+}
+
+.boton--primario {
+    background-color: var(--negro);
+}
+
+.boton--secundario {
+    background-color: var(--primario);
+}
+
+.cursos {
+    list-style: none; /*propiedad para cambiar el estilo de listas*/
+}
+
+.widget-curso {
+    border-bottom: 1px solid var(--gris);
+    margin-bottom: 2rem;
+}
+
+.widget-curso:last-of-type {
+    border: none;
+    margin-bottom: 0;
+}
+
+.widget-curso__label {
+    font-family: var(--feunteheading);
+    font-weight: bold;
+}
+
+.widget-curso__informacion {
+    font-weight: normal;
+}
+
+.widget-curso__label, 
+.widget-curso__informacion {
+    font-size: 2rem;
+}
+
+/* FOOTER */
+
+.footer {
+    background-color: var(--negro);
+    padding-bottom: 3rem;
+    margin-top: auto;
+} /*Si te preguntas por qué tiene margin auto, es para que siempre esté al final de la página, además de que le puse separación al texto de la sección de nosotros para que este tenga espacaciado aceptable para la lectura de las personas, aunque le haya puesto letras al azar.*/
+
+/* SOBRE NOSOTROS */  
+
+.sobre-nosotros__texto {
+    text-align: justify;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .sobre-nosotros {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+        row-gap: 0;
+    }
+
+    .sobre-nosotros__imagen {
+        margin-top: 1rem;
+    }
+}
+
+/* CURSOS */
+
+.curso {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--gris);
+}
+
+
+.curso p {
+    text-align: justify;
+}
+
+@media (min-width: 768px) {
+    .curso {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 2rem;
+    }
+}
+
+.curso:last-of-type {
+    border: none;
+} 
+
+.curso:last-of-type {
+    border: none;
+    margin-bottom: 0;
+}
+
+.curso__label {
+    font-family: var(--feunteheading);
+    font-weight: bold;
+}
+
+.curso__informacion {
+    font-weight: normal;
+}
+
+.curso__label, 
+.curso__informacion {
+    font-size: 2rem;
+}
+
+
+/* ENTRADA  */
+
+.entrada__texto {
+    text-align: justify;
+}
+
+/* CONTACTO */
+
+.contacto__imagen {
+    background-image: url(../img/contacto.jpg);
+    height: 40rem;
+    background-repeat: no-repeat;
+}
+
+/* CAMPO */
+
+.formulario {
+    background-color: var(--blanco);
+    margin: -5rem auto 0 auto;
+    width: 95%;
+    padding: 2rem;
+}
+
+.campo {
+    display: flex;
+    margin-bottom: 2rem;
+    text-align: right;
+    gap: 2rem;
+}
+
+.campo__label {
+    flex-basis: calc(9rem);
+}
+
+@media (min-width: 480px) {
+    .campo {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+.campo__field {
+    flex: 1;
+    border: 1px solid var(--gris);
+    overflow: auto;
+}
+
+.campo__field--textarea {
+    height: 20rem;
+}
+
+@media (max-width: 768px) {
+    .boton__submit {
+        width: 100%;
+    }
+}
